@@ -1,24 +1,31 @@
 import requests
+import random
 
-# 1.1
-request = requests.get('http://127.0.0.1:5000/number?param=8')
+# 2.1
+request = requests.get(f'http://127.0.0.1:5000/number?param={random.randint(1, 10)}')
 a = request.json()["number"]
+print('=' * 64)
+print(f'Ответ GET: {request.json()}')
 
-# 1.2
+# 2.2
 request = requests.post('http://127.0.0.1:5000/number', json={
-    "jsonParam": 8
+    "jsonParam": random.randint(1, 10)
 })
 b = request.json()["number"]
 operation_b = request.json()["operation"]
+print('-' * 64)
+print(f'Ответ POST: {request.json()}')
 
-# 1.3
+# 2.3
 request = requests.delete('http://127.0.0.1:5000/number', json={
-    "jsonParam": 8
+    "jsonParam": random.randint(1, 10)
 })
 c = request.json()["number"]
 operation_c = request.json()["operation"]
+print('-' * 64)
+print(f'Ответ DELETE: {request.json()}')
 
-# 1.4
+# 2.4
 def operations(a, b, operation):
     if operation == 'sum':
         return a + b
@@ -47,4 +54,3 @@ print('=' * 64)
 # 1. curl -X GET http://127.0.0.1:5000/number?param=8
 # 2. curl -X POST -d "{\"jsonParam\": 8}" -H "Content-Type: application/json" http://127.0.0.1:5000/number
 # 3. curl -X DELETE -d "{\"jsonParam\": 8}" -H "Content-Type: application/json" http://127.0.0.1:5000/number
-# 4. 
