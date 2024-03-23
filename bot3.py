@@ -59,6 +59,7 @@ def main():
             CURRENCY: [MessageHandler(Filters.text, input_currency)],
             RATE: [MessageHandler(Filters.text, input_rate)]
         },
+#если текущий обработчик не может обработать входящее сообщение, никакие дополнительные действия не будут выполняться. 
         fallbacks=[]
     )
 
